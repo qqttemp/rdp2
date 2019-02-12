@@ -13,6 +13,7 @@ namespace NewRedotApiTest
         private const int TIMEOUT = 1000;
         private const string HTTP_GET = "GET";
         private const string HTTP_POST = "POST";
+        private const string HTTP_DELETE = "DELETE";
         private const string CONTENTTYPE_FORM = "application/x-www-form-urlencoded";
         private const string CONTENTTYPE_JSON = "application/json";
 
@@ -47,6 +48,20 @@ namespace NewRedotApiTest
         }
 
         public Dictionary<string, string> Headers { get; }
+
+        public string HttpDelete()
+        {
+            using (HttpWebResponse response=HttpWebResponse(Url,HTTP_DELETE, null))
+            {
+                using (Stream myResponseStream = response.GetResponseStream())
+                {
+                    using (StreamReader myStreamReader = new StreamReader(myResponseStream))
+                    {
+                        return myStreamReader.ReadToEnd();
+                    }
+                }
+            }
+        }
 
         public string HttpPost()
         {
