@@ -1,0 +1,7 @@
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.exe.config
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.exe
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.pdb
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csprojAssemblyReference.cache
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csproj.CoreCompileInputs.cache
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.exe
+C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.pdb
