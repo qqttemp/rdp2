@@ -55,7 +55,21 @@ namespace NewRedotApiTest
 
         public Dictionary<string, string> Headers { get; }
 
-        public ResponseMessage HttpPost(string postData)
+        public string HttpDelete()
+        {
+            using (HttpWebResponse response=HttpWebResponse(Url,HTTP_DELETE, null))
+            {
+                using (Stream myResponseStream = response.GetResponseStream())
+                {
+                    using (StreamReader myStreamReader = new StreamReader(myResponseStream))
+                    {
+                        return myStreamReader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public string HttpPost()
         {
             var httpclient = NetworkClient.HttpClient;
             var data = Encoding.ASCII.GetBytes(postData);
