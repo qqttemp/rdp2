@@ -48,8 +48,17 @@
     <Compile Include="Card\CardApi.cs" />
     <Compile Include="Card\Models\CardTokens.cs" />
     <Compile Include="NetworkClient.cs" />
+    <Compile Include="Pay\Model\CurrencyAmount.cs" />
+    <Compile Include="Pay\Model\Customer.cs" />
+    <Compile Include="Pay\Model\NewOrder.cs" />
+    <Compile Include="Pay\Model\Order.cs" />
+    <Compile Include="Pay\Model\Transaction.cs" />
+    <Compile Include="Pay\Model\ValueObject\IpAddress.cs" />
+    <Compile Include="Pay\Model\ValueObject\OrderDate.cs" />
+    <Compile Include="Pay\PayApI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

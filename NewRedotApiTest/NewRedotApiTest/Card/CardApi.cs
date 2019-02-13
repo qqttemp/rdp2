@@ -14,10 +14,7 @@ namespace NewRedotApiTest
 
         public CardTokens ListAllTokens(string repoId,string bin = null)
         {
-            string url = $"{CardAPIBaseUrl}/{repoId}/token";
-            NetworkClient networkClient = new NetworkClient(url);
-            string resultJson =  networkClient.HttpGet();
-            return JsonConvert.DeserializeObject<CardTokens>(resultJson);
+            throw new NotImplementedException();
         }
     }
 }

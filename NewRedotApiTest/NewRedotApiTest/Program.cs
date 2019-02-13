@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewRedotApiTest.Pay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,9 @@ namespace NewRedotApiTest
 
         static void Main(string[] args)
         {
-            Ping();
-            CreateRepository();
+            PayApI payApI = new PayApI();
+//            var orders = payApI.Authorize(new Pay.Model.NewOrder() { Amount = 1});
+            var order = payApI.Capture("111",new Pay.Model.CurrencyAmount() { Amount =2,Currency="CNY" });
             Console.ReadKey();
         }
 
@@ -50,7 +52,7 @@ namespace NewRedotApiTest
             //client.Headers.Add("x-api-key", "3B4OeQA1y6ofBWkKy1XzV17t6kShSV84sKeymRStUo6GXhN1DYiYuCUQoZzx6OrpAzqfVTuOMTalPWXrpk3oesnDg76uY3l9vzzqGOlUuig0fwzL0ooU2ythYpNGCJ2h");
             //client.Headers.Add("Authorization", "EJU9ecjOyCsBBIc3Td4H3TFQ2RLUNnvQirgNMeqZiXqkYiDqQ4IBBP8CIMfgPi687Fwzqr5OG3Ufzayxi4ghGZxJwRHfIkX0pAZdQQ3XWUgTBspHBb0leyp1AIdNzsdr");
             // client.Headers.Add("x-api-key", "EJU9ecjOyCsBBIc3Td4H3TFQ2RLUNnvQirgNMeqZiXqkYiDqQ4IBBP8CIMfgPi687Fwzqr5OG3Ufzayxi4ghGZxJwRHfIkX0pAZdQQ3XWUgTBspHBb0leyp1AIdNzsdr");
-            var result = client.HttpPost();
+            var result = client.HttpPost(null);
             Console.WriteLine(result);
         }
 

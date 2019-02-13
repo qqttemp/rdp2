@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +11,16 @@ namespace NewRedotApiTest
 {
     public class NetworkClient
     {
-        private const int TIMEOUT = 1000;
+        private const int TIMEOUT = 10000;
         private const string HTTP_GET = "GET";
         private const string HTTP_POST = "POST";
+        private const string HTTP_DELETE = "DELETE";
         private const string CONTENTTYPE_FORM = "application/x-www-form-urlencoded";
         private const string CONTENTTYPE_JSON = "application/json";
 
+        private static readonly HttpClient HttpClient;
 
         public string Url { get; set; }
-        public string PostData { get; set; }
 
         private string _ContentType;
         public ContentTypeEnum ContentType
@@ -39,6 +41,11 @@ namespace NewRedotApiTest
             }
         }
 
+        static NetworkClient()
+        {
+            HttpClient = new HttpClient();
+        }
+
         public NetworkClient(string url)
         {
             Headers = new Dictionary<string, string>();
@@ -48,67 +55,53 @@ namespace NewRedotApiTest
 
         public Dictionary<string, string> Headers { get; }
 
-        public string HttpPost()
+        public ResponseMessage HttpPost(string postData)
         {
-            using (HttpWebResponse response = HttpWebResponse(Url, HTTP_POST, PostData))
+            var httpclient = NetworkClient.HttpClient;
+            var data = Encoding.ASCII.GetBytes(postData);
+            using (HttpClient http = new HttpClient())
             {
-                using (Stream myResponseStream = response.GetResponseStream())
+                HttpResponseMessage message = null;
+                using (Stream dataStream = new MemoryStream(data ?? new byte[0]))
                 {
-                    using (StreamReader myStreamReader = new StreamReader(myResponseStream))
+                    using (HttpContent content = new StreamContent(dataStream))
                     {
-                        return myStreamReader.ReadToEnd();
+                        foreach (var key in Headers.Keys)
+                        {
+                            content.Headers.Add(key, Headers[key]);
+                        }
+                        content.Headers.Add("Content-Type", _ContentType);
+                        message = http.PostAsync(Url, content).GetAwaiter().GetResult();
                     }
                 }
+                return new ResponseMessage()
+                {
+                    StatusCode = message.StatusCode,
+                    Result = message.Content.ReadAsStringAsync().Result
+                };
             }
         }
 
-        public string HttpGet()
+        public ResponseMessage HttpGet()
         {
-            using (HttpWebResponse response = HttpWebResponse(Url, HTTP_GET, null))
+            string result = "";
+            var httpclient = NetworkClient.HttpClient;
+
+            var response = httpclient.GetAsync(Url).Result;
+
+            using (Stream myResponseStream = response.Content.ReadAsStreamAsync().Result)
             {
-                using (Stream myResponseStream = response.GetResponseStream())
+                using (StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8")))
                 {
-                    using (StreamReader myStreamReader = new StreamReader(myResponseStream))
-                    {
-                        return myStreamReader.ReadToEnd();
-                    }
+                    result = myStreamReader.ReadToEnd();
                 }
             }
 
-        }
-
-        private HttpWebResponse HttpWebResponse(string url, string method, string postData)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
-            AddHeader(request);
-            request.ContentType = _ContentType;
-            request.Method = method;
-            request.AllowAutoRedirect = false;
-            request.Timeout = TIMEOUT;
-
-            if (string.IsNullOrWhiteSpace(postData))
+            return new ResponseMessage()
             {
-                request.ContentLength = 0;
-            }
-            else
-            {
-                using (Stream myRequestStream = request.GetRequestStream())
-                {
-                    using (StreamWriter myStreamWriter = new StreamWriter(myRequestStream))
-                    {
-                        myStreamWriter.Write(postData);
-                    }
-                }
-            }
-            try
-            {
-                return (HttpWebResponse)request.GetResponse();
-            }
-            catch (WebException ex)
-            {
-                return (HttpWebResponse)ex.Response;
-            }
+                StatusCode = response.StatusCode,
+                Result = result
+            };
         }
 
         private void AddHeader(HttpWebRequest request)

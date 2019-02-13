@@ -5,3 +5,14 @@ C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedot
 C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csproj.CoreCompileInputs.cache
 C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.exe
 C:\Users\weipeng\source\repos\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.pdb
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csprojAssemblyReference.cache
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csproj.CoreCompileInputs.cache
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.exe
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.pdb
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.exe.config
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.exe
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\NewRedotApiTest.pdb
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\weipeng\source\repos\rdp2\NewRedotApiTest\NewRedotApiTest\obj\Debug\NewRedotApiTest.csproj.CopyComplete
